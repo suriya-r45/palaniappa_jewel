@@ -1,0 +1,987 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palaniappa Jewellers - Luxury Gold, Silver & Diamond Jewelry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'gold': '#D4AF37',
+                        'brand-red': '#DC2626',
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="font-inter bg-white text-gray-900">
+
+    <!-- @COMPONENT: Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-white rounded-full border-2 border-gold flex items-center justify-center">
+                        <span class="text-brand-red text-2xl font-bold">P</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-playfair font-bold text-black">PALANIAPPA JEWELLERS</h1>
+                        <p class="text-sm text-gray-600">Since 2025</p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-700 hover:text-gold transition-colors">Home</a>
+                    <a href="#gold" class="text-gray-700 hover:text-gold transition-colors">Gold</a>
+                    <a href="#silver" class="text-gray-700 hover:text-gold transition-colors">Silver</a>
+                    <a href="#diamonds" class="text-gray-700 hover:text-gold transition-colors">Diamonds</a>
+                    <a href="#new-arrivals" class="text-gray-700 hover:text-gold transition-colors">New Arrivals</a>
+                    <a href="#contact" class="text-gray-700 hover:text-gold transition-colors">Contact</a>
+                </nav>
+
+                <!-- Currency Toggle & Mobile Menu -->
+                <div class="flex items-center space-x-4">
+                    <!-- @STATE: selectedCurrency:string = 'INR' -->
+                    <div class="hidden sm:flex items-center space-x-2">
+                        <button data-event="click:toggleCurrency" class="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
+                            <span data-bind="currency.current">INR</span>
+                        </button>
+                    </div>
+                    
+                    <!-- Mobile menu button -->
+                    <button class="md:hidden p-2">
+                        <i class="fas fa-bars text-gray-700"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: HeroSection -->
+    <section id="home" class="relative bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-6xl font-playfair font-bold text-black mb-6">
+                    Exquisite Jewelry Collection
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Discover our stunning collection of gold, silver, and diamond jewelry crafted with precision and love. From India to Bahrain, we bring you the finest pieces.
+                </p>
+            </div>
+
+            <!-- Hero Image Carousel -->
+            <!-- @FUNCTIONALITY: This carousel should implement infinite scroll with auto-play -->
+            <div class="relative h-96 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent z-10"></div>
+                <!-- A stunning display of luxury gold jewelry pieces arranged elegantly -->
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=600" 
+                     alt="Luxury jewelry hero image" 
+                     class="w-full h-full object-cover" data-mock="true" />
+                
+                <!-- Carousel Navigation -->
+                <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+                    <!-- @MAP: heroImages.map((_, index) => ( -->
+                    <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors" data-mock="true"></button>
+                    <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors" data-mock="true"></button>
+                    <button class="w-3 h-3 rounded-full bg-white transition-colors" data-mock="true"></button>
+                    <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors" data-mock="true"></button>
+                    <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors" data-mock="true"></button>
+                    <!-- @END_MAP )) -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- @COMPONENT: CategoryNavigation -->
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="#gold" class="group text-center p-6 rounded-xl hover:bg-gray-50 transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-ring text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-black group-hover:text-gold transition-colors">Gold Jewelry</h3>
+                    <p class="text-sm text-gray-600 mt-2">Premium gold collections</p>
+                </a>
+
+                <a href="#silver" class="group text-center p-6 rounded-xl hover:bg-gray-50 transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-gem text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-black group-hover:text-gold transition-colors">Silver Jewelry</h3>
+                    <p class="text-sm text-gray-600 mt-2">Elegant silver pieces</p>
+                </a>
+
+                <a href="#diamonds" class="group text-center p-6 rounded-xl hover:bg-gray-50 transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                        <i class="far fa-gem text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-black group-hover:text-gold transition-colors">Diamonds</h3>
+                    <p class="text-sm text-gray-600 mt-2">Brilliant diamond jewelry</p>
+                </a>
+
+                <a href="#new-arrivals" class="group text-center p-6 rounded-xl hover:bg-gray-50 transition-colors">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-black group-hover:text-gold transition-colors">New Arrivals</h3>
+                    <p class="text-sm text-gray-600 mt-2">Latest collections</p>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: CategoryNavigation -->
+
+    <!-- @COMPONENT: FilterSection -->
+    <section class="bg-gray-50 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="flex items-center space-x-4">
+                    <h3 class="text-lg font-semibold text-black">Filter Products</h3>
+                    <select class="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" data-event="change:handleCategoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="gold">Gold</option>
+                        <option value="silver">Silver</option>
+                        <option value="diamonds">Diamonds</option>
+                        <option value="new-arrivals">New Arrivals</option>
+                    </select>
+                    <select class="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" data-event="change:handlePriceFilter">
+                        <option value="all">All Prices</option>
+                        <option value="low">Under ₹50,000</option>
+                        <option value="medium">₹50,000 - ₹1,00,000</option>
+                        <option value="high">Above ₹1,00,000</option>
+                    </select>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm text-gray-600">Sort by:</span>
+                    <select class="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" data-event="change:handleSort">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FilterSection -->
+
+    <!-- @COMPONENT: ProductSection [category: 'gold'] -->
+    <section id="gold" class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-playfair font-bold text-black mb-4">Gold Jewelry Collection</h2>
+                <p class="text-lg text-gray-600">Discover our exquisite gold jewelry crafted with precision</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- @MAP: goldProducts.map(product => ( -->
+                <!-- Product Card 1 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Elegant gold necklace with intricate designs -->
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Gold necklace" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Elegant Gold Necklace</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">22K gold necklace with traditional design</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹85,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 425</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-gold text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry" data-implementation="Open WhatsApp with pre-filled product details">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Beautiful gold earrings with traditional motifs -->
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Gold earrings" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Traditional Gold Earrings</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Handcrafted 22K gold earrings</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹45,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 225</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-gold text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Stunning gold bracelet with modern design -->
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Gold bracelet" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Designer Gold Bracelet</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Modern 18K gold bracelet</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹35,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 175</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full" data-bind="product.stock">Limited Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-gold text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Magnificent gold ring with gemstone accents -->
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Gold ring" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Luxury Gold Ring</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">22K gold ring with precious stones</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹65,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 325</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-gold text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="bg-black text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors" data-event="click:viewAllGold">
+                    View All Gold Jewelry
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ProductSection -->
+
+    <!-- @COMPONENT: ProductSection [category: 'silver'] -->
+    <section id="silver" class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-playfair font-bold text-black mb-4">Silver Jewelry Collection</h2>
+                <p class="text-lg text-gray-600">Elegant silver pieces for every occasion</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- @MAP: silverProducts.map(product => ( -->
+                <!-- Silver Product Card 1 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Exquisite silver necklace with modern design -->
+                    <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Silver necklace" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Modern Silver Necklace</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Sterling silver with contemporary design</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹15,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 75</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Silver Product Card 2 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Beautiful silver earrings with intricate patterns -->
+                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Silver earrings" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Artisan Silver Earrings</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Handcrafted sterling silver earrings</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹8,500</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 42</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Silver Product Card 3 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Elegant silver bracelet with decorative elements -->
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Silver bracelet" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Classic Silver Bracelet</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Timeless sterling silver design</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹12,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 60</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full" data-bind="product.stock">Limited Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Silver Product Card 4 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Sophisticated silver ring with geometric design -->
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Silver ring" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Contemporary Silver Ring</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Modern sterling silver ring</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹6,500</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 32</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="bg-black text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors" data-event="click:viewAllSilver">
+                    View All Silver Jewelry
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ProductSection -->
+
+    <!-- @COMPONENT: ProductSection [category: 'diamonds'] -->
+    <section id="diamonds" class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-playfair font-bold text-black mb-4">Diamond Jewelry Collection</h2>
+                <p class="text-lg text-gray-600">Brilliant diamonds that capture light and hearts</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- @MAP: diamondProducts.map(product => ( -->
+                <!-- Diamond Product Card 1 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Spectacular diamond necklace with multiple stones -->
+                    <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Diamond necklace" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Brilliant Diamond Necklace</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">18K white gold with premium diamonds</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹2,50,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 1,250</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diamond Product Card 2 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Dazzling diamond earrings with brilliant cut stones -->
+                    <img src="https://pixabay.com/get/g47814ec74646210bd6cdadf04bd80bacf6821ad6076155861673d17d20742b2710fac67e6952a8d512d8cda1bb5d0903f34c54887dacba9b7c84ef29f02126a0_1280.jpg" 
+                         alt="Diamond earrings" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Classic Diamond Earrings</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Certified diamond studs in platinum</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹1,85,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 925</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full" data-bind="product.stock">Limited Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diamond Product Card 3 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Luxurious diamond bracelet with intricate metalwork -->
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Diamond bracelet" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Elegant Diamond Bracelet</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Tennis bracelet with round diamonds</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹3,20,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 1,600</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diamond Product Card 4 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+                    <!-- Stunning diamond ring with solitaire setting -->
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="Diamond ring" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Solitaire Diamond Ring</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">1 carat diamond in platinum setting</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹4,50,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 2,250</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="bg-black text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors" data-event="click:viewAllDiamonds">
+                    View All Diamond Jewelry
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ProductSection -->
+
+    <!-- @COMPONENT: ProductSection [category: 'new-arrivals'] -->
+    <section id="new-arrivals" class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-playfair font-bold text-black mb-4">New Arrivals</h2>
+                <p class="text-lg text-gray-600">Discover our latest jewelry collections</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- @MAP: newArrivalProducts.map(product => ( -->
+                <!-- New Arrival Product Card 1 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                        New
+                    </div>
+                    <!-- Contemporary gold pendant with modern geometric design -->
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="New arrival pendant" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Contemporary Gold Pendant</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Modern geometric design in 18K gold</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹28,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 140</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Arrival Product Card 2 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                        New
+                    </div>
+                    <!-- Trendy silver choker with minimalist aesthetic -->
+                    <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="New arrival choker" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Minimalist Silver Choker</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Trendy sterling silver choker</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹9,500</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 47</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Arrival Product Card 3 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                        New
+                    </div>
+                    <!-- Innovative diamond cluster earrings with modern setting -->
+                    <img src="https://pixabay.com/get/g00a5110f0ad8969bce5aac256cde0dabfb4287798f9680d1a5d2d25a90e813720b78196c80cd5d14478b34962d80c35f7b4776acbe514c623db1e1395fdafcd2_1280.jpg" 
+                         alt="New arrival diamond earrings" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Diamond Cluster Earrings</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Innovative cluster design with diamonds</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹1,25,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 625</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full" data-bind="product.stock">Limited Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Arrival Product Card 4 -->
+                <div class="group bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden relative">
+                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10">
+                        New
+                    </div>
+                    <!-- Fusion style gold and silver mixed metal bangle -->
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                         alt="New arrival mixed metal bangle" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" data-mock="true" />
+                    
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-black mb-2" data-bind="product.name">Fusion Mixed Metal Bangle</h3>
+                        <p class="text-sm text-gray-600 mb-3" data-bind="product.description">Gold and silver fusion design</p>
+                        
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="text-xl font-bold text-black" data-bind="product.price.inr">₹22,000</span>
+                                <span class="text-sm text-gray-500 ml-2" data-bind="product.price.bhd">BHD 110</span>
+                            </div>
+                            <span class="text-sm px-2 py-1 bg-green-100 text-green-800 rounded-full" data-bind="product.stock">In Stock</span>
+                        </div>
+                        
+                        <div class="flex space-x-2">
+                            <button class="flex-1 bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition-colors" data-event="click:viewProduct">
+                                View Details
+                            </button>
+                            <button class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors" data-event="click:whatsappEnquiry">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="bg-black text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors" data-event="click:viewAllNewArrivals">
+                    View All New Arrivals
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ProductSection -->
+
+    <!-- @COMPONENT: ProductUploadForm -->
+    <section class="bg-white py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-playfair font-bold text-black mb-4">Product Upload</h2>
+                <p class="text-lg text-gray-600">Add new products to the catalog</p>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-8">
+                <form class="space-y-6" data-event="submit:handleProductUpload">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Product Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="Enter product name" data-mock="true">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                            <select class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" data-mock="true">
+                                <option value="">Select category</option>
+                                <option value="gold">Gold</option>
+                                <option value="silver">Silver</option>
+                                <option value="diamonds">Diamonds</option>
+                                <option value="new-arrivals">New Arrivals</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Price (INR)</label>
+                            <input type="number" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="Price in Indian Rupees" data-mock="true">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Price (BHD)</label>
+                            <input type="number" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="Price in Bahraini Dinar" data-mock="true">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Stock Quantity</label>
+                            <input type="number" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="Available quantity" data-mock="true">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Weight</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="Product weight" data-mock="true">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Product Description</label>
+                        <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-gold focus:border-transparent" placeholder="Detailed product description" data-mock="true"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Product Images</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-md p-8 text-center">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                            <p class="text-gray-600 mb-2">Drop images here or click to upload</p>
+                            <input type="file" multiple accept="image/*" class="hidden" data-mock="true">
+                            <button type="button" class="bg-gold text-white px-6 py-2 rounded-md hover:bg-yellow-600 transition-colors" data-event="click:selectImages">
+                                Select Images
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pt-6">
+                        <button type="submit" class="bg-black text-white px-8 py-3 rounded-md hover:bg-gray-800 transition-colors font-semibold" data-implementation="Should validate form and upload product">
+                            Upload Product
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ProductUploadForm -->
+
+    <!-- @COMPONENT: ContactSection -->
+    <section id="contact" class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-playfair font-bold mb-4">Visit Our Stores</h2>
+                <p class="text-lg text-gray-300">Experience our collections at our locations</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Indian Store -->
+                <div class="text-center">
+                    <div class="bg-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-playfair font-bold mb-4">India Store</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p class="text-lg">Salem, Tamil Nadu</p>
+                        <p>India</p>
+                    </div>
+                </div>
+
+                <!-- Bahrain Store -->
+                <div class="text-center">
+                    <div class="bg-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-map-marker-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-playfair font-bold mb-4">Bahrain Store</h3>
+                    <div class="space-y-2 text-gray-300">
+                        <p class="text-lg">Gold City, Manama</p>
+                        <p>Kingdom of Bahrain</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-center space-x-4">
+                        <i class="fas fa-phone text-gold"></i>
+                        <span class="text-lg">+919597201554</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-4">
+                        <i class="fas fa-envelope text-gold"></i>
+                        <span class="text-lg">jewelerypalaniappa@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ContactSection -->
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-full border-2 border-gold flex items-center justify-center">
+                            <span class="text-brand-red text-lg font-bold">P</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-playfair font-bold">PALANIAPPA JEWELLERS</h3>
+                            <p class="text-sm text-gray-400">Since 2025</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Crafting exquisite jewelry with precision and love. From traditional to contemporary designs, we bring you the finest collections.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#gold" class="hover:text-gold transition-colors">Gold Jewelry</a></li>
+                        <li><a href="#silver" class="hover:text-gold transition-colors">Silver Jewelry</a></li>
+                        <li><a href="#diamonds" class="hover:text-gold transition-colors">Diamonds</a></li>
+                        <li><a href="#new-arrivals" class="hover:text-gold transition-colors">New Arrivals</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-phone text-gold"></i>
+                            <span>+919597201554</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fas fa-envelope text-gold"></i>
+                            <span>jewelerypalaniappa@gmail.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fab fa-whatsapp text-gold"></i>
+                            <span>WhatsApp Enquiry</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Palaniappa Jewellers. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <script>
+        // TODO: Implement business logic, API calls, and state management
+        (function() {
+            // Currency toggle functionality
+            let currentCurrency = 'INR';
+            
+            function toggleCurrency() {
+                currentCurrency = currentCurrency === 'INR' ? 'BHD' : 'INR';
+                // Update currency display throughout the page
+                // TODO: Implement currency conversion and update all price displays
+            }
+            
+            // WhatsApp enquiry functionality
+            function sendWhatsAppEnquiry(productName, price) {
+                const phoneNumber = '+919597201554';
+                const message = `Hi, I'm interested in ${productName} priced at ${price}. Can you provide more details?`;
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(whatsappURL, '_blank');
+            }
+            
+            // Filter and sort functionality
+            function handleFiltering() {
+                // TODO: Implement product filtering and sorting logic
+            }
+            
+            // Product upload form handling
+            function handleProductUpload(event) {
+                event.preventDefault();
+                // TODO: Implement form validation and product upload logic
+            }
+            
+            // Image carousel functionality
+            function initializeCarousel() {
+                // TODO: Implement hero image carousel with auto-play
+            }
+            
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                initializeCarousel();
+            });
+        })();
+    </script>
+
+</body>
+</html>
