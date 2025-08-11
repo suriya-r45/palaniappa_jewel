@@ -79,17 +79,26 @@ export default function Header() {
             </button>
           </nav>
 
-          {/* Currency Toggle & Mobile Menu */}
+          {/* Currency Dropdown & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Currency Toggle */}
-            <div className="hidden sm:flex items-center space-x-2">
-              <button
-                onClick={toggleCurrency}
-                className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-                data-testid="currency-toggle"
+            {/* Currency Dropdown */}
+            <div className="hidden sm:block relative">
+              <select
+                value={currency}
+                onChange={(e) => {
+                  if (e.target.value !== currency) {
+                    toggleCurrency();
+                  }
+                }}
+                className="appearance-none bg-white border border-gray-300 rounded-md px-8 py-2 pr-10 text-sm hover:bg-gray-50 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                data-testid="currency-dropdown"
               >
-                {currency}
-              </button>
+                <option value="INR">🇮🇳 INR</option>
+                <option value="BHD">🇧🇭 BHD</option>
+              </select>
+              <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                <i className="fas fa-chevron-down text-gray-400 text-xs"></i>
+              </div>
             </div>
             
             {/* Admin Link */}
@@ -153,14 +162,20 @@ export default function Header() {
               >
                 Contact
               </button>
-              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                <span className="text-sm text-gray-600">Currency:</span>
-                <button
-                  onClick={toggleCurrency}
-                  className="px-3 py-1 text-sm border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+              <div className="pt-4 border-t border-gray-200">
+                <label className="block text-sm text-gray-600 mb-2">Currency:</label>
+                <select
+                  value={currency}
+                  onChange={(e) => {
+                    if (e.target.value !== currency) {
+                      toggleCurrency();
+                    }
+                  }}
+                  className="w-full appearance-none bg-white border border-gray-300 rounded-md px-3 py-2 pr-8 text-sm hover:bg-gray-50 transition-colors cursor-pointer"
                 >
-                  {currency}
-                </button>
+                  <option value="INR">🇮🇳 Indian Rupee (INR)</option>
+                  <option value="BHD">🇧🇭 Bahraini Dinar (BHD)</option>
+                </select>
               </div>
               <a
                 href="/admin"
