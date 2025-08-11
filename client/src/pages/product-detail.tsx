@@ -2,6 +2,8 @@ import { useParams, useLocation } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Product } from "@shared/schema";
 import { useCurrency } from "@/hooks/use-currency";
+import { useCart } from "@/hooks/use-cart";
+import { useToast } from "@/hooks/use-toast";
 import { openWhatsApp } from "@/lib/whatsapp";
 import { useState } from "react";
 
@@ -9,7 +11,10 @@ export default function ProductDetail() {
   const { id } = useParams();
   const [, navigate] = useLocation();
   const { currency, formatPrice } = useCurrency();
+  const { addToCart, isInCart } = useCart();
+  const { toast } = useToast();
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
 
   const { data: product, isLoading } = useQuery<Product>({
     queryKey: ["/api/products", id],
@@ -48,6 +53,35 @@ export default function ProductDetail() {
   const handleWhatsAppEnquiry = () => {
     const price = formatPrice(product.priceInr, product.priceBhd);
     openWhatsApp(product.name, price, product.description);
+  };
+
+  const handleAddToCart = () => {
+    if (product.stockQuantity === 0) {
+      toast({
+        title: "Out of Stock",
+        description: "This item is currently out of stock.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    addToCart(product, quantity);
+    toast({
+      title: "Added to Cart!",
+      description: `${quantity} x ${product.name} added to your cart.`,
+    });
+  };
+
+  const incrementQuantity = () => {
+    if (quantity < product.stockQuantity) {
+      setQuantity(prev => prev + 1);
+    }
+  };
+
+  const decrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(prev => prev - 1);
+    }
   };
 
   const getStockStatus = () => {
@@ -174,8 +208,55 @@ export default function ProductDetail() {
               </div>
             </div>
 
+            {/* Quantity Selector */}
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
+                <div className="flex items-center space-x-3">
+                  <button
+                    onClick={decrementQuantity}
+                    disabled={quantity <= 1}
+                    className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                    data-testid="decrease-quantity"
+                  >
+                    <i className="fas fa-minus text-sm"></i>
+                  </button>
+                  <span className="text-xl font-semibold px-4" data-testid="quantity-display">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={incrementQuantity}
+                    disabled={quantity >= product.stockQuantity}
+                    className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+                    data-testid="increase-quantity"
+                  >
+                    <i className="fas fa-plus text-sm"></i>
+                  </button>
+                  <span className="text-sm text-gray-500 ml-4">
+                    {product.stockQuantity} available
+                  </span>
+                </div>
+              </div>
+            </div>
+
             {/* Action Buttons */}
             <div className="space-y-4 pt-6">
+              <button
+                onClick={handleAddToCart}
+                disabled={product.stockQuantity === 0}
+                className={`w-full flex items-center justify-center space-x-3 py-4 px-6 rounded-md font-semibold transition-colors ${
+                  product.stockQuantity === 0
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : isInCart(product.id)
+                      ? 'bg-gold text-white hover:bg-yellow-600'
+                      : 'bg-gold text-white hover:bg-yellow-600'
+                }`}
+                data-testid="add-to-cart-button"
+              >
+                <i className={`fas ${isInCart(product.id) ? 'fa-check' : 'fa-shopping-cart'} text-xl`}></i>
+                <span>{product.stockQuantity === 0 ? 'Out of Stock' : isInCart(product.id) ? 'Added to Cart' : 'Add to Cart'}</span>
+              </button>
+              
               <button
                 onClick={handleWhatsAppEnquiry}
                 disabled={product.stockQuantity === 0}

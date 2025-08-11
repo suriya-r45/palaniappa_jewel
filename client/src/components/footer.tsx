@@ -1,63 +1,53 @@
-import logoPath from "@assets/1000284180_1754917213241.jpg";
-
 export default function Footer() {
   return (
     <footer className="bg-black text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-gold">
-                <img 
-                  src={logoPath} 
-                  alt="Palaniappa Jewellers Logo" 
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <h3 className="text-lg font-playfair font-bold">PALANIAPPA JEWELLERS</h3>
-                <p className="text-sm text-gray-400">Since 2025</p>
-              </div>
-            </div>
-            <p className="text-gray-400 mb-4">
-              Crafting exquisite jewelry with precision and love. From traditional to contemporary designs, we bring you the finest collections.
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Store Information */}
+          <div>
+            <h3 className="text-xl font-semibold mb-4 text-gold">Palaniappa Jewellers</h3>
+            <p className="text-gray-300 mb-4">Since 2025</p>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Luxury jewelry crafted with precision and heritage, serving customers in India and Bahrain.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Contact Information */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li><a href="/products/gold" className="hover:text-gold transition-colors" data-testid="footer-gold">Gold Jewelry</a></li>
-              <li><a href="/products/silver" className="hover:text-gold transition-colors" data-testid="footer-silver">Silver Jewelry</a></li>
-              <li><a href="/products/diamonds" className="hover:text-gold transition-colors" data-testid="footer-diamonds">Diamonds</a></li>
-              <li><a href="/products/new-arrivals" className="hover:text-gold transition-colors" data-testid="footer-new-arrivals">New Arrivals</a></li>
-            </ul>
+            <h3 className="text-xl font-semibold mb-4 text-gold">Contact Info</h3>
+            <div className="space-y-2">
+              <p className="text-gray-300 text-sm">
+                <i className="fas fa-phone mr-2"></i>
+                +91 9597 201 554
+              </p>
+              <p className="text-gray-300 text-sm">
+                <i className="fas fa-envelope mr-2"></i>
+                jewelerypalaniappa@gmail.com
+              </p>
+            </div>
           </div>
 
-          {/* Contact */}
+          {/* Locations */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li className="flex items-center space-x-2">
-                <i className="fas fa-phone text-gold"></i>
-                <span>+919597201554</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <i className="fas fa-envelope text-gold"></i>
-                <span>jewelerypalaniappa@gmail.com</span>
-              </li>
-              <li className="flex items-center space-x-2">
-                <i className="fab fa-whatsapp text-gold"></i>
-                <span>WhatsApp Enquiry</span>
-              </li>
-            </ul>
+            <h3 className="text-xl font-semibold mb-4 text-gold">Locations</h3>
+            <div className="space-y-4">
+              <div>
+                <h4 className="text-white font-medium">India</h4>
+                <p className="text-gray-300 text-sm">Salem, Tamil Nadu</p>
+              </div>
+              <div>
+                <h4 className="text-white font-medium">Bahrain</h4>
+                <p className="text-gray-300 text-sm">Gold City, Manama</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 Palaniappa Jewellers. All rights reserved.</p>
+        {/* Bottom Section */}
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+          <p className="text-gray-400 text-sm">
+            © 2025 Palaniappa Jewellers. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

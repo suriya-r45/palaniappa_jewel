@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useCurrency } from "@/hooks/use-currency";
+import { useCart } from "@/hooks/use-cart";
 import logoPath from "@assets/1000284180_1754917213241.jpg";
+import CartSidebar from "@/components/cart-sidebar";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { currency, toggleCurrency } = useCurrency();
+  const { getTotalItems } = useCart();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -79,7 +82,7 @@ export default function Header() {
             </button>
           </nav>
 
-          {/* Currency Dropdown & Mobile Menu */}
+          {/* Currency Dropdown, Cart & Mobile Menu */}
           <div className="flex items-center space-x-4">
             {/* Currency Dropdown */}
             <div className="hidden sm:block relative">
@@ -100,6 +103,21 @@ export default function Header() {
                 <i className="fas fa-chevron-down text-gray-400 text-xs"></i>
               </div>
             </div>
+
+            {/* Shopping Cart */}
+            <CartSidebar>
+              <button 
+                className="p-2 text-gray-700 hover:text-gold transition-colors relative"
+                data-testid="cart-button"
+              >
+                <i className="fas fa-shopping-bag text-xl"></i>
+                {getTotalItems() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-gold text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                    {getTotalItems()}
+                  </span>
+                )}
+              </button>
+            </CartSidebar>
             
             {/* Admin Link */}
             <a

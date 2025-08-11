@@ -1,6 +1,8 @@
 import { Product } from "@shared/schema";
 import { useCurrency } from "@/hooks/use-currency";
+import { useCart } from "@/hooks/use-cart";
 import { openWhatsApp } from "@/lib/whatsapp";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductCardProps {
   product: Product;
@@ -9,6 +11,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, showNewBadge = false }: ProductCardProps) {
   const { formatPrice } = useCurrency();
+  const { addToCart, isInCart } = useCart();
+  const { toast } = useToast();
 
   const handleWhatsAppEnquiry = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -19,6 +23,26 @@ export default function ProductCard({ product, showNewBadge = false }: ProductCa
 
   const handleViewDetails = () => {
     window.location.href = `/product/${product.id}`;
+  };
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (product.stockQuantity === 0) {
+      toast({
+        title: "Out of Stock",
+        description: "This item is currently out of stock.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    addToCart(product, 1);
+    toast({
+      title: "Added to Cart!",
+      description: `${product.name} has been added to your cart.`,
+    });
   };
 
   const getStockStatus = () => {
@@ -99,6 +123,20 @@ export default function ProductCard({ product, showNewBadge = false }: ProductCa
             data-testid={`view-product-${product.id}`}
           >
             View Details
+          </button>
+          <button
+            onClick={handleAddToCart}
+            disabled={product.stockQuantity === 0}
+            className={`py-2 px-4 rounded-md transition-colors ${
+              product.stockQuantity === 0 
+                ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                : isInCart(product.id)
+                  ? 'bg-gold text-white hover:bg-yellow-600'
+                  : 'bg-gold text-white hover:bg-yellow-600'
+            }`}
+            data-testid={`add-to-cart-${product.id}`}
+          >
+            <i className={`fas ${isInCart(product.id) ? 'fa-check' : 'fa-shopping-cart'}`}></i>
           </button>
           <button
             onClick={handleWhatsAppEnquiry}
