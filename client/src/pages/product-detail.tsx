@@ -86,14 +86,14 @@ export default function ProductDetail() {
               <img
                 src={product.imageUrls[selectedImageIndex] || product.imageUrls[0]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 data-testid="product-main-image"
               />
             </div>
 
             {/* Thumbnail Images */}
             {product.imageUrls.length > 1 && (
-              <div className="flex space-x-4 overflow-x-auto">
+              <div className="flex justify-center space-x-4 overflow-x-auto">
                 {product.imageUrls.map((imageUrl, index) => (
                   <button
                     key={index}
@@ -106,7 +106,7 @@ export default function ProductDetail() {
                     <img
                       src={imageUrl}
                       alt={`${product.name} ${index + 1}`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-center"
                     />
                   </button>
                 ))}
@@ -213,7 +213,7 @@ export default function ProductDetail() {
         {/* Additional Product Information */}
         <div className="mt-16 bg-gray-50 rounded-xl p-8">
           <h2 className="text-2xl font-playfair font-bold text-black mb-6">Product Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="text-center">
               <i className="fas fa-certificate text-3xl text-gold mb-4"></i>
               <h3 className="font-semibold text-black mb-2">Certified Quality</h3>
@@ -221,13 +221,8 @@ export default function ProductDetail() {
             </div>
             <div className="text-center">
               <i className="fas fa-shipping-fast text-3xl text-gold mb-4"></i>
-              <h3 className="font-semibold text-black mb-2">Free Shipping</h3>
-              <p className="text-sm text-gray-600">Complimentary shipping on all orders within India and Bahrain</p>
-            </div>
-            <div className="text-center">
-              <i className="fas fa-undo-alt text-3xl text-gold mb-4"></i>
-              <h3 className="font-semibold text-black mb-2">Easy Returns</h3>
-              <p className="text-sm text-gray-600">Hassle-free returns within 30 days of purchase</p>
+              <h3 className="font-semibold text-black mb-2">Shipping Information</h3>
+              <p className="text-sm text-gray-600">Secure delivery to India and Bahrain. Shipping costs calculated at checkout</p>
             </div>
           </div>
         </div>

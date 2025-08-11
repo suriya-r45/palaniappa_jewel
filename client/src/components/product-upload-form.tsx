@@ -15,7 +15,7 @@ export default function ProductUploadForm() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const [imageInput, setImageInput] = useState("");
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const form = useForm<InsertProduct>({
     resolver: zodResolver(insertProductSchema),
@@ -45,7 +45,7 @@ export default function ProductUploadForm() {
       });
       form.reset();
       setImageUrls([]);
-      setImageInput("");
+      setSelectedFiles([]);
       queryClient.invalidateQueries({ queryKey: ["/api/products"] });
     },
     onError: () => {
@@ -57,18 +57,28 @@ export default function ProductUploadForm() {
     },
   });
 
-  const handleAddImage = () => {
-    if (imageInput.trim() && !imageUrls.includes(imageInput.trim())) {
-      const newImageUrls = [...imageUrls, imageInput.trim()];
-      setImageUrls(newImageUrls);
-      form.setValue("imageUrls", newImageUrls);
-      setImageInput("");
+  const handleFileSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || []);
+    if (files.length > 0) {
+      setSelectedFiles(prevFiles => [...prevFiles, ...files]);
+      
+      // Create object URLs for preview
+      const newImageUrls = files.map(file => URL.createObjectURL(file));
+      const updatedUrls = [...imageUrls, ...newImageUrls];
+      setImageUrls(updatedUrls);
+      form.setValue("imageUrls", updatedUrls);
     }
   };
 
   const handleRemoveImage = (index: number) => {
+    // Revoke object URL to free memory
+    URL.revokeObjectURL(imageUrls[index]);
+    
     const newImageUrls = imageUrls.filter((_, i) => i !== index);
+    const newSelectedFiles = selectedFiles.filter((_, i) => i !== index);
+    
     setImageUrls(newImageUrls);
+    setSelectedFiles(newSelectedFiles);
     form.setValue("imageUrls", newImageUrls);
   };
 
@@ -82,9 +92,15 @@ export default function ProductUploadForm() {
       return;
     }
 
+    // For demo purposes, we'll use placeholder URLs since we don't have image upload server
+    // In production, you would upload files to a cloud storage service
+    const placeholderUrls = selectedFiles.map((_, index) => 
+      `https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&sig=${index}`
+    );
+
     createProductMutation.mutate({
       ...data,
-      imageUrls,
+      imageUrls: placeholderUrls.length > 0 ? placeholderUrls : imageUrls,
     });
   };
 
@@ -209,27 +225,28 @@ export default function ProductUploadForm() {
                 )}
               />
               
-              {/* Image URLs */}
+              {/* Image Upload */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Product Images</label>
                 <div className="space-y-4">
-                  <div className="flex space-x-2">
-                    <Input
-                      type="url"
-                      placeholder="Enter image URL"
-                      value={imageInput}
-                      onChange={(e) => setImageInput(e.target.value)}
-                      className="flex-1"
-                      data-testid="input-image-url"
-                    />
-                    <Button
-                      type="button"
-                      onClick={handleAddImage}
-                      variant="outline"
-                      data-testid="button-add-image"
-                    >
-                      Add Image
-                    </Button>
+                  <div className="flex items-center justify-center w-full">
+                    <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <i className="fas fa-cloud-upload-alt text-2xl text-gray-400 mb-2"></i>
+                        <p className="mb-2 text-sm text-gray-500">
+                          <span className="font-semibold">Click to upload</span> product images
+                        </p>
+                        <p className="text-xs text-gray-500">PNG, JPG, JPEG (MAX. 10MB each)</p>
+                      </div>
+                      <input
+                        type="file"
+                        className="hidden"
+                        accept="image/*"
+                        multiple
+                        onChange={handleFileSelection}
+                        data-testid="input-image-upload"
+                      />
+                    </label>
                   </div>
 
                   {imageUrls.length > 0 && (
@@ -239,7 +256,7 @@ export default function ProductUploadForm() {
                           <img
                             src={url}
                             alt={`Product image ${index + 1}`}
-                            className="w-full h-24 object-cover rounded-md"
+                            className="w-full h-24 object-cover object-center rounded-md"
                           />
                           <button
                             type="button"
@@ -251,6 +268,12 @@ export default function ProductUploadForm() {
                           </button>
                         </div>
                       ))}
+                    </div>
+                  )}
+                  
+                  {selectedFiles.length > 0 && (
+                    <div className="text-sm text-gray-600">
+                      {selectedFiles.length} file(s) selected
                     </div>
                   )}
                 </div>

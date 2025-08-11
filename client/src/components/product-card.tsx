@@ -62,7 +62,7 @@ export default function ProductCard({ product, showNewBadge = false }: ProductCa
         <img
           src={product.imageUrls[0]}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
           data-testid={`product-image-${product.id}`}
         />
       </div>
@@ -95,7 +95,7 @@ export default function ProductCard({ product, showNewBadge = false }: ProductCa
         <div className="flex space-x-2">
           <button
             onClick={handleViewDetails}
-            className={`flex-1 text-white py-2 px-4 rounded-md transition-colors ${getButtonColor()}`}
+            className="flex-1 bg-black text-white py-2 px-4 rounded-md hover:bg-gray-800 transition-colors"
             data-testid={`view-product-${product.id}`}
           >
             View Details
