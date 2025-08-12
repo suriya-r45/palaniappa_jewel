@@ -8,6 +8,21 @@
     "check": "tsc",
     "db:push": "drizzle-kit push"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/nanoid": "^3.0.0",
+    "@types/node": "^24.2.1",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@replit/vite-plugin-cartographer": "^0.2.8",
+    "@replit/vite-plugin-runtime-error-modal": "^0.0.3",
+    "@vitejs/plugin-react": "^5.0.0",
+    "drizzle-orm": "^0.44.4",
+    "drizzle-zod": "^0.8.3",
+    "express": "^5.1.0",
+    "nanoid": "^5.1.5",
+    "vite": "^7.1.2",
+    "zod": "^4.0.17"
+  }
 }
