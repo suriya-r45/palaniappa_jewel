@@ -5,7 +5,7 @@ export function openWhatsApp(productName: string, price: string, description: st
 Product Details:
 ${description}
 
-Could you please provide more information about this item? Thank you!`;
+.Could you please provide more information about this item? Thank you!`;
 
   const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   window.open(whatsappURL, '_blank');
